@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
     FaBars,
     FaEdit,
@@ -14,9 +14,20 @@ import {
 } from "react-icons/fa";
 import { HiCog6Tooth } from "react-icons/hi2";
 import { Link, Outlet, useLocation } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProviders";
+import useLoader from "../../Components/UseLoader/useLoader";
 
 const Main = () => {
     const location = useLocation();
+    const { user, logOut, loading } = useContext(AuthContext);
+    if (loading) {
+        return useLoader();
+    }
+    const handleSignOut = () => {
+        logOut()
+            .then((result) => {})
+            .catch((error) => {});
+    };
     return (
         <div>
             <div className="drawer drawer-mobile">
@@ -135,16 +146,22 @@ const Main = () => {
                                 <FaEnvelope></FaEnvelope> Inbox
                             </Link>
                         </li>
-                        <li className="hover:text-blue-400">
-                            <Link to={"/login"}>
-                                <FaSignInAlt></FaSignInAlt> Login
-                            </Link>
-                        </li>
-                        <li className="hover:text-blue-400">
-                            <a href="#contact">
-                                <FaSignOutAlt></FaSignOutAlt> Log Out
-                            </a>
-                        </li>
+                        {!user ? (
+                            <li className="hover:text-blue-400">
+                                <Link to={"/login"}>
+                                    <FaSignInAlt></FaSignInAlt> Login
+                                </Link>
+                            </li>
+                        ) : (
+                            <li
+                                onClick={handleSignOut}
+                                className="hover:text-blue-400"
+                            >
+                                <a href="#contact">
+                                    <FaSignOutAlt></FaSignOutAlt> Log Out
+                                </a>
+                            </li>
+                        )}
                     </ul>
                 </div>
             </div>

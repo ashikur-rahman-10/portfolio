@@ -1,4 +1,6 @@
 import React from "react";
+import { FaCloudDownloadAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import { TypeAnimation } from "react-type-animation";
 
 const TopBanner = () => {
@@ -27,6 +29,15 @@ const TopBanner = () => {
                             />
                         </span>
                     </p>
+                    <div className="my-10  w-fit">
+                        <a
+                            href="https://drive.google.com/file/d/1v9epeTqsIou2S9lnyk1oWcyKCsQMmhk0/view?usp=sharing"
+                            className=" z-30 bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-purple-500 px-4 py-2 font-semibold flex  items-center gap-1 rounded-md "
+                        >
+                            Download Resume{" "}
+                            <FaCloudDownloadAlt></FaCloudDownloadAlt>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

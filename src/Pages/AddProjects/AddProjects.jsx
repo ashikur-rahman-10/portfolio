@@ -64,6 +64,12 @@ const AddProjects = () => {
             });
     };
 
+    window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+    });
+
     return (
         <div className="px-10 w-full min-h-screen pt-10 md:pt-0 pb-10">
             <SectionTitle title={"Add a project"}></SectionTitle>

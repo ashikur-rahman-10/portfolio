@@ -5,6 +5,8 @@ import AddProjects from "../Pages/AddProjects/AddProjects";
 import About from "../Pages/About/About";
 import Contact from "../Pages/Contact/Contact";
 import Projects from "../Pages/Projects/Projects";
+import AllProjects from "../Pages/AllProjects/AllProjects";
+import Login from "../Pages/Login/Login";
 
 const router = createBrowserRouter([
     {
@@ -31,7 +33,15 @@ const router = createBrowserRouter([
                 path: "/projects",
                 element: <Projects></Projects>,
             },
+            {
+                path: "/all-projects",
+                element: <AllProjects></AllProjects>,
+            },
         ],
+    },
+    {
+        path: "/login",
+        element: <Login></Login>,
     },
 ]);
 export default router;

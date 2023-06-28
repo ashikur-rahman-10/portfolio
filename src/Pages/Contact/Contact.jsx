@@ -1,8 +1,30 @@
-import React from "react";
+import React, { useRef } from "react";
+import emailjs from "@emailjs/browser";
 import { FaPhone, FaMapMarkerAlt, FaEnvelope } from "react-icons/fa";
 import SectionTitle from "../../Components/SectionTitle/SectionTitle";
+import { Toaster, toast } from "react-hot-toast";
 
 const Contact = () => {
+    const form = useRef();
+
+    const sendEmail = (e) => {
+        e.preventDefault();
+
+        emailjs
+            .sendForm(
+                "service_tm5wqqw",
+                "template_429qmrp",
+                form.current,
+                "a1zdpDVwRvcl4Zo9C"
+            )
+            .then(
+                (result) => {
+                    e.target.reset();
+                    toast.success("Email send successfull");
+                },
+                (error) => {}
+            );
+    };
     return (
         <div className="px-10 pt-10 md:pt-0 bg-gradient-to-r from-violet-300 to-fuchsia-500">
             <SectionTitle title={"Get In Touch"}></SectionTitle>
@@ -25,23 +47,33 @@ const Contact = () => {
                         </p>
                     </div>
                     <div>
-                        <form className="flex flex-col gap-4 w-full max-w-lg  lg:p-10 p-4 rounded-lg shadow-2xl  items-center ">
+                        <form
+                            ref={form}
+                            onSubmit={sendEmail}
+                            className="flex flex-col gap-4 w-full max-w-lg  lg:p-10 p-4 rounded-lg shadow-2xl  items-center "
+                        >
                             <h1 className="text-2xl font-medium text-white">
                                 Want to send me a message?
                             </h1>
                             <input
                                 type="text"
+                                required
                                 placeholder="your name"
+                                name="user_name"
                                 className="input input-bordered w-72 lg:w-96"
                             />
                             <input
                                 type="email"
+                                name="user_email"
+                                required
                                 placeholder="email"
                                 className="input input-bordered w-72 lg:w-96"
                             />
                             <textarea
                                 className="textarea textarea-bordered w-72 lg:w-96"
+                                required
                                 placeholder="your message"
+                                name="message"
                             ></textarea>
                             <input
                                 type="submit"
@@ -52,6 +84,7 @@ const Contact = () => {
                     </div>
                 </div>
             </div>
+            <Toaster></Toaster>
         </div>
     );
 };
