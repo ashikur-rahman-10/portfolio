@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import loginBanner from "../../assets/Images/login_banner.svg";
 import background from "../../assets/background/triangle_bg.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash, FaRegEyeSlash } from "react-icons/fa";
 import GoogleSignIn from "../../Components/GoogleSignIn/GoogleSignIn";
 
 const Login = () => {
     const [show, setShow] = useState(false);
+
     const {
         register,
         handleSubmit,

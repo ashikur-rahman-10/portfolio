@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 const ProjectCard = ({ project }) => {
     const {
+        _id,
         projectName,
         frontendGit,
         backendGit,
@@ -13,6 +14,7 @@ const ProjectCard = ({ project }) => {
         details,
         thumbnail,
     } = project;
+
     return (
         <div>
             <div className="card lg:card-side bg-base-100 shadow-2xl bg-transparent ">
@@ -35,14 +37,15 @@ const ProjectCard = ({ project }) => {
                             target="blank"
                             className="bg-[#0D6EFD] w-fit px-3 py-1 rounded-md text-white font-semibold flex items-center gap-1 hover:bg-sky-500"
                         >
-                            Frontend <FaGithub></FaGithub>
+                            Frontend{" "}
+                            <FaGithub className="text-black"></FaGithub>
                         </Link>
                         <Link
-                            href={backendGit}
+                            to={backendGit}
                             target="blank"
                             className="bg-[#0D6EFD] w-fit px-3 py-1 rounded-md text-white font-semibold flex items-center gap-1 hover:bg-sky-500"
                         >
-                            Backend <FaGithub></FaGithub>
+                            Backend <FaGithub className="text-black"></FaGithub>
                         </Link>
                     </div>
                     <div>
@@ -56,7 +59,10 @@ const ProjectCard = ({ project }) => {
                     </div>
 
                     <div className="card-actions justify-end">
-                        <Link className="bg-[#0D6EFD] w-fit px-3 py-1 rounded-md text-white font-semibold flex items-center gap-1 hover:bg-sky-500">
+                        <Link
+                            to={`/projects/${_id}`}
+                            className="bg-[#0D6EFD] w-fit px-3 py-1 rounded-md text-white font-semibold flex items-center gap-1 hover:bg-sky-500"
+                        >
                             View Details
                         </Link>
                     </div>

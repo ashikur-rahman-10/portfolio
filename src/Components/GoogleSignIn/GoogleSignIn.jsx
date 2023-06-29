@@ -2,12 +2,15 @@ import React from "react";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProviders";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const GoogleSignIn = () => {
     const { googleLogin } = useContext(AuthContext);
+    const navigate = useNavigate();
     const handleGoogleLogin = () => {
         googleLogin()
             .then((result) => {
+                navigate("/");
                 Swal.fire({
                     icon: "success",
                     title: "Login Successfull!",

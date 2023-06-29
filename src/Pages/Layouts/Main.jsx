@@ -126,30 +126,25 @@ const Main = () => {
 
                         {/* For Admin */}
 
-                        <li className="hover:text-blue-400">
+                        {/* <li className="hover:text-blue-400">
                             <a href="#contact">
                                 <HiCog6Tooth></HiCog6Tooth> Profile Settings
                             </a>
-                        </li>
-                        <li className="hover:text-blue-400">
-                            <Link to={"/add-project"}>
-                                <FaPuzzlePiece></FaPuzzlePiece> Add a Projects
-                            </Link>
-                        </li>
-                        <li className="hover:text-blue-400">
-                            <Link to={"/manage-project"}>
-                                <FaEdit></FaEdit> Manage Projects
-                            </Link>
-                        </li>
-                        <li className="hover:text-blue-400">
-                            <Link to={"/inbox"}>
-                                <FaEnvelope></FaEnvelope> Inbox
-                            </Link>
-                        </li>
+                        </li> */}
+
+                        {user?.email == "ashikur.rahman3912@gmail.com" && (
+                            <li className="hover:text-blue-400">
+                                <Link to={"/add-project"}>
+                                    <FaPuzzlePiece></FaPuzzlePiece> Add a
+                                    Projects
+                                </Link>
+                            </li>
+                        )}
+
                         {!user ? (
                             <li className="hover:text-blue-400">
                                 <Link to={"/login"}>
-                                    <FaSignInAlt></FaSignInAlt> Login
+                                    <FaSignInAlt></FaSignInAlt>Admin Login
                                 </Link>
                             </li>
                         ) : (

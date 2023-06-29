@@ -12,7 +12,6 @@ const Projects = () => {
             .get("http://localhost:5000/projects")
             .then(function (response) {
                 setProjects(response.data.splice(0, 3));
-                console.log(response.data);
             })
             .catch(function (error) {
                 console.log(error);
