@@ -11,6 +11,9 @@ import ProjectDetails from "../Pages/ProjectDetails/ProjectDetails";
 import AddAskill from "../Pages/AddASkill/AddAskill";
 import Skills from "../Pages/Skills/Skills";
 import UpdateProject from "../Pages/UpdateProjects/UpdateProject";
+import UpdateAbout from "../Pages/About/UpdateAbout";
+import AdminOnly from "./AdminOnly";
+import UpdateDP from "../Pages/About/UpdateDP";
 
 const router = createBrowserRouter([
   {
@@ -23,11 +26,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/add-project",
-        element: <AddProjects></AddProjects>,
+        element: (
+          <AdminOnly>
+            <AddProjects></AddProjects>
+          </AdminOnly>
+        ),
       },
       {
         path: "/update/:id",
-        element: <UpdateProject></UpdateProject>,
+        element: (
+          <AdminOnly>
+            <UpdateProject></UpdateProject>
+          </AdminOnly>
+        ),
       },
       {
         path: "/about",
@@ -51,11 +62,31 @@ const router = createBrowserRouter([
       },
       {
         path: "/add-skill",
-        element: <AddAskill></AddAskill>,
+        element: (
+          <AdminOnly>
+            <AddAskill></AddAskill>
+          </AdminOnly>
+        ),
       },
       {
         path: "skills",
         element: <Skills></Skills>,
+      },
+      {
+        path: "/update-about",
+        element: (
+          <AdminOnly>
+            <UpdateAbout></UpdateAbout>
+          </AdminOnly>
+        ),
+      },
+      {
+        path: "/update-dp",
+        element: (
+          <AdminOnly>
+            <UpdateDP></UpdateDP>
+          </AdminOnly>
+        ),
       },
     ],
   },
