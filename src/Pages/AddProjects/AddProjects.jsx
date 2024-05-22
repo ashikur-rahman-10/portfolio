@@ -8,6 +8,7 @@ const AddProjects = () => {
     const imageHostingUrl = `https://api.imgbb.com/1/upload?key=${
         import.meta.env.VITE_IMAGE_HOSTING_KEY
     }`;
+    console.log(imageHostingUrl);
     const [imgUrl, setImgUrl] = useState("");
 
     const onSubmit = (data) => {
@@ -42,10 +43,10 @@ const AddProjects = () => {
                         technologies: usedTechnology,
                         features: websiteFeatures,
                         details,
-                        image: imgUrl,
+                        thumbnail: imgUrl,
                     };
                     console.log(project);
-                    fetch("http://localhost:5000/projects", {
+                    fetch("https://porfolio-server-five.vercel.app/projects", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",

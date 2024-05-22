@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
     FaBirthdayCake,
     FaEnvelope,
@@ -7,15 +7,21 @@ import {
     FaPhoneAlt,
 } from "react-icons/fa";
 import SectionTitle from "../../Components/SectionTitle/SectionTitle";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const About = () => {
+    useEffect(() => {
+        Aos.init({ duration: 2000 });
+        Aos.refresh();
+    }, []);
     return (
         <div className="w-full px-10 lg:h-screen pb-10 ">
             <SectionTitle title={"About"}></SectionTitle>
             <h1 className="text-2xl font-medium pb-6">
                 I am <span className="text-[#037fff]">Md. Ashikur Rahman</span>
             </h1>
-            <p>
+            <p data-aos="zoom-in">
                 Hi! My name is Md.Ashikur Rahman. I am a Web Developer, and I'm
                 very passionate and dedicated to my work. I have acquired the
                 skills and knowledge necessary to make your project a success. I
@@ -25,7 +31,7 @@ const About = () => {
                 you that it was created to do.
             </p>
             <div className="flex justify-around space-y-10 lg:space-y-0 items-center flex-col lg:flex-row my-10">
-                <div>
+                <div data-aos="zoom-out">
                     <img
                         className="w-96"
                         src="https://raw.githubusercontent.com/ashikur-rahman-10/portfolio/main/src/assets/Images/avater.png"

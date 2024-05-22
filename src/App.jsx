@@ -1,9 +1,11 @@
 import { TypeAnimation } from "react-type-animation";
 import "./App.css";
+import ParticlesBackground from "./Components/ParticleBackground/ParticlesBackground";
 
 function App() {
     return (
         <>
+            <ParticlesBackground></ParticlesBackground>
             <div>
                 <h1>Md.Ashikur Rahman</h1>
                 <p className="text-3xl">

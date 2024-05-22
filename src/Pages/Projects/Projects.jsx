@@ -3,20 +3,27 @@ import axios from "axios";
 import SectionTitle from "../../Components/SectionTitle/SectionTitle";
 import ProjectCard from "../../Components/ProjectCard/ProjectCard";
 import { Link } from "react-router-dom";
+import useLoader from "../../Components/UseLoader/useLoader";
 
 const Projects = () => {
+    const [loading, setLoading] = useState(true);
     const [projects, setProjects] = useState([]);
 
     useEffect(() => {
         axios
-            .get("http://localhost:5000/projects")
+            .get("https://porfolio-server-five.vercel.app/projects")
             .then(function (response) {
                 setProjects(response.data.splice(0, 3));
+                setLoading(false);
             })
             .catch(function (error) {
                 console.log(error);
             });
     }, []);
+
+    if (loading) {
+        return useLoader();
+    }
 
     window.scrollTo({
         top: 0,

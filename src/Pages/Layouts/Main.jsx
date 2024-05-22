@@ -12,10 +12,12 @@ import {
     FaSignOutAlt,
     FaUserAlt,
 } from "react-icons/fa";
+import { GiSkills } from "react-icons/gi";
 import { HiCog6Tooth } from "react-icons/hi2";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProviders";
 import useLoader from "../../Components/UseLoader/useLoader";
+import ParticlesBackground from "../../Components/ParticleBackground/ParticlesBackground";
 
 const Main = () => {
     const location = useLocation();
@@ -30,6 +32,7 @@ const Main = () => {
     };
     return (
         <div>
+            <ParticlesBackground />
             <div className="drawer drawer-mobile">
                 <input
                     id="my-drawer-2"
@@ -75,15 +78,16 @@ const Main = () => {
                                     </a>
                                 </li>
                                 <li className="hover:text-blue-400">
+                                    <a href="#skills">
+                                        <GiSkills></GiSkills> Skills
+                                    </a>
+                                </li>
+                                <li className="hover:text-blue-400">
                                     <a href="#projects">
                                         <FaServer></FaServer> Projects
                                     </a>
                                 </li>
-                                <li className="hover:text-blue-400">
-                                    <a href="#resume">
-                                        <FaPaperclip></FaPaperclip> Resume
-                                    </a>
-                                </li>
+
                                 <li className="hover:text-blue-400">
                                     <a href="/#contact">
                                         <FaEnvelopeOpen></FaEnvelopeOpen>{" "}
@@ -104,16 +108,16 @@ const Main = () => {
                                     </a>
                                 </li>
                                 <li className="hover:text-blue-400">
+                                    <a href="/skills">
+                                        <GiSkills></GiSkills> Skills
+                                    </a>
+                                </li>
+                                <li className="hover:text-blue-400">
                                     <a href="/projects">
                                         <FaServer></FaServer> Projects
                                     </a>
                                 </li>
 
-                                <li className="hover:text-blue-400">
-                                    <a href="/resume">
-                                        <FaPaperclip></FaPaperclip> Resume
-                                    </a>
-                                </li>
                                 <li className="hover:text-blue-400">
                                     <a href="/contact">
                                         <FaEnvelopeOpen></FaEnvelopeOpen>{" "}
@@ -133,12 +137,19 @@ const Main = () => {
                         </li> */}
 
                         {user?.email == "ashikur.rahman3912@gmail.com" && (
-                            <li className="hover:text-blue-400">
-                                <Link to={"/add-project"}>
-                                    <FaPuzzlePiece></FaPuzzlePiece> Add a
-                                    Projects
-                                </Link>
-                            </li>
+                            <>
+                                <li className="hover:text-blue-400">
+                                    <Link to={"/add-project"}>
+                                        <FaPuzzlePiece></FaPuzzlePiece> Add a
+                                        Projects
+                                    </Link>
+                                </li>
+                                <li className="hover:text-blue-400">
+                                    <Link to={"/add-skill"}>
+                                        <GiSkills></GiSkills> Add a Skill
+                                    </Link>
+                                </li>
+                            </>
                         )}
 
                         {!user ? (
