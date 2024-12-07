@@ -10,7 +10,7 @@ const AddProjects = () => {
   const imageHostingUrl = `https://api.imgbb.com/1/upload?key=${
     import.meta.env.VITE_IMAGE_HOSTING_KEY
   }`;
-  console.log(imageHostingUrl);
+
   const [imgUrl, setImgUrl] = useState("");
 
   const onSubmit = (data) => {
@@ -35,6 +35,7 @@ const AddProjects = () => {
             technologies,
             websiteLink,
             features,
+            completionDate, // Get the new field
           } = data;
           const usedTechnology = technologies.split(",");
           const websiteFeatures = features.split(".\n");
@@ -48,6 +49,7 @@ const AddProjects = () => {
             details,
             thumbnail: imgUrl,
             uploadDate: new Date(),
+            completionDate: new Date(completionDate), // Add completion date
           };
           fetch("https://porfolio-server-five.vercel.app/projects", {
             method: "POST",
@@ -58,7 +60,6 @@ const AddProjects = () => {
           })
             .then((res) => res.json())
             .then((data) => {
-              console.log(data);
               if (data.insertedId) {
                 setUploading(false);
                 toast.success("Project Added Successfully!!");
@@ -76,12 +77,6 @@ const AddProjects = () => {
       </div>
     );
   }
-
-  window.scrollTo({
-    top: 0,
-    left: 0,
-    behavior: "smooth",
-  });
 
   return (
     <div className="px-10 w-full min-h-screen pt-10 md:pt-0 pb-10">
@@ -145,7 +140,7 @@ const AddProjects = () => {
           <div className="flex w-full flex-col md:flex-row gap-4 md:gap-10 ">
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Screenshorts</span>
+                <span className="label-text">Screenshots</span>
               </label>
               <input
                 type="file"
@@ -160,9 +155,7 @@ const AddProjects = () => {
               <input
                 type="text"
                 placeholder="Used technology"
-                {...register("technologies", {
-                  required: true,
-                })}
+                {...register("technologies", { required: true })}
                 className="input input-bordered input-primary w-full md:w-96 max-w-md"
               />
             </div>
@@ -190,6 +183,16 @@ const AddProjects = () => {
                 className="textarea textarea-bordered textarea-primary w-full md:w-96 max-w-md"
               />
             </div>
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Completion Date</span>
+            </label>
+            <input
+              type="date"
+              {...register("completionDate", { required: true })}
+              className="input input-bordered input-primary w-full md:w-96 max-w-md"
+            />
           </div>
           <div className="w-full flex justify-center">
             <input

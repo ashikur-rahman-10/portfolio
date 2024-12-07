@@ -3,8 +3,6 @@ import { useForm } from "react-hook-form";
 import { Toaster, toast } from "react-hot-toast";
 import SectionTitle from "../../Components/SectionTitle/SectionTitle";
 import { useNavigate, useParams } from "react-router-dom";
-import { data } from "autoprefixer";
-import { settings } from "firebase/analytics";
 
 const UpdateProject = () => {
   const [project, setProject] = useState({});
@@ -21,9 +19,7 @@ const UpdateProject = () => {
       });
   }, [id]);
 
-  //   console.log(project);
-
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
     const {
@@ -34,10 +30,11 @@ const UpdateProject = () => {
       technologies,
       websiteLink,
       features,
+      completionDate,
     } = data;
 
     const usedTechnology = technologies.split(",");
-    const websiteFeatures = features.split(".\n");
+    const websiteFeatures = features.split(",");
     const updatedProject = {
       projectName,
       frontendGit,
@@ -46,6 +43,7 @@ const UpdateProject = () => {
       technologies: usedTechnology,
       features: websiteFeatures,
       details,
+      completionDate, // Adding the completion date
     };
 
     fetch(`https://porfolio-server-five.vercel.app/projects/${id}`, {
@@ -57,9 +55,8 @@ const UpdateProject = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.modifiedCount > 0) {
-          toast.success("Project update Successfully!!");
+          toast.success("Project updated successfully!");
           setTimeout(() => {
             navigate(`/projects/${id}`);
           }, 500);
@@ -84,14 +81,14 @@ const UpdateProject = () => {
           <h1 className="text-center text-2xl md:text-4xl py-5 md:mb-4">
             Update Your Project
           </h1>
-          <div className="flex w-full flex-col md:flex-row gap-4 md:gap-10 ">
+          <div className="flex w-full flex-col md:flex-row gap-4 md:gap-10">
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Project Name</span>
               </label>
               <input
                 type="text"
-                placeholder="project name"
+                placeholder="Project Name"
                 defaultValue={project?.projectName}
                 {...register("projectName", { required: true })}
                 className="input input-bordered input-primary w-full md:w-96 max-w-md"
@@ -99,69 +96,69 @@ const UpdateProject = () => {
             </div>
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Frontend Github link</span>
+                <span className="label-text">Frontend GitHub Link</span>
               </label>
               <input
                 type="text"
-                placeholder="frontend github link"
+                placeholder="Frontend GitHub Link"
                 defaultValue={project?.frontendGit}
                 {...register("frontendGit", { required: true })}
                 className="input input-bordered input-primary w-full md:w-96 max-w-md"
               />
             </div>
           </div>
-          <div className="flex w-full flex-col md:flex-row gap-4 md:gap-10 ">
+          <div className="flex w-full flex-col md:flex-row gap-4 md:gap-10">
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Backend Github Link</span>
+                <span className="label-text">Backend GitHub Link</span>
               </label>
               <input
                 type="text"
-                placeholder="backend github link"
-                {...register("backendGit", { required: true })}
+                placeholder="Backend GitHub Link"
                 defaultValue={project?.backendGit}
+                {...register("backendGit", { required: true })}
                 className="input input-bordered input-primary w-full md:w-96 max-w-md"
               />
             </div>
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Live website Link</span>
+                <span className="label-text">Live Website Link</span>
               </label>
               <input
                 type="text"
-                placeholder="live website link"
-                {...register("websiteLink", { required: true })}
+                placeholder="Live Website Link"
                 defaultValue={project?.websiteLink}
+                {...register("websiteLink", { required: true })}
                 className="input input-bordered input-primary w-full md:w-96 max-w-md"
               />
             </div>
           </div>
-          <div className="flex w-full flex-col md:flex-row gap-4 md:gap-10 ">
-            {/* <div className="form-control">
-              <label className="label">
-                <span className="label-text">Screenshorts</span>
-              </label>
-              <input
-                type="file"
-                {...register("thumbnail", { required: true })}
-                defaultValue={project?.thumbnail}
-                className="file-input file-input-bordered w-full md:w-96 max-w-md"
-              />
-            </div> */}
+          <div className="flex w-full flex-col md:flex-row gap-4 md:gap-10">
             <div>
               <label className="label">
                 <span className="label-text">Technologies</span>
               </label>
               <input
                 type="text"
-                placeholder="Used technology"
-                {...register("technologies", { required: true })}
+                placeholder="Used Technologies (comma-separated)"
                 defaultValue={project?.technologies}
+                {...register("technologies", { required: true })}
+                className="input input-bordered input-primary w-full md:w-96 max-w-md"
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Completion Date</span>
+              </label>
+              <input
+                type="date"
+                {...register("completionDate", { required: true })}
+                defaultValue={project?.completionDate?.slice(0, 10)}
                 className="input input-bordered input-primary w-full md:w-96 max-w-md"
               />
             </div>
           </div>
-          <div className="flex w-full flex-col md:flex-row gap-4 md:gap-10 ">
+          <div className="flex w-full flex-col md:flex-row gap-4 md:gap-10">
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Features</span>
@@ -169,7 +166,7 @@ const UpdateProject = () => {
               <textarea
                 type="text"
                 {...register("features", { required: true })}
-                placeholder="features"
+                placeholder="Features (use newline for separation)"
                 defaultValue={project?.features}
                 className="textarea textarea-bordered textarea-primary w-full md:w-96 max-w-md"
               />
@@ -182,21 +179,21 @@ const UpdateProject = () => {
                 type="text"
                 {...register("details", { required: true })}
                 defaultValue={project?.details}
-                placeholder="details"
+                placeholder="Project Details"
                 className="textarea textarea-bordered textarea-primary w-full md:w-96 max-w-md"
               />
             </div>
           </div>
           <div className="w-full flex justify-center">
             <input
-              className=" bg-info px-5 py-2 rounded-lg text-white font-medium hover:bg-sky-600 cursor-pointer"
+              className="bg-info px-5 py-2 rounded-lg text-white font-medium hover:bg-sky-600 cursor-pointer"
               type="submit"
               value="Save"
             />
           </div>
         </form>
       </div>
-      <Toaster></Toaster>
+      <Toaster />
     </div>
   );
 };

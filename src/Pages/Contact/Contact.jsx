@@ -17,16 +17,20 @@ const Contact = () => {
         "service_tm5wqqw",
         "template_429qmrp",
         form.current,
-        "a1zdpDVwRvcl4Zo9C"
+        "KMPL-ZDeUbmcN_--C"
       )
       .then(
         (result) => {
           e.target.reset();
-          toast.success("Email send successfull");
+          toast.success("Email sent successfully!");
         },
-        (error) => {}
+        (error) => {
+          console.error("EmailJS Error:", error.text);
+          toast.error("Failed to send email. Please try again.");
+        }
       );
   };
+
   return (
     <div className="px-10 pt-10 md:pt-0 bg-gradient-to-r from-violet-300 to-fuchsia-500">
       <SectionTitle title={"Get In Touch"}></SectionTitle>

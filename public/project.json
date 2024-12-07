@@ -1,0 +1,114 @@
+[
+    {
+      "projectName": "Modonovo",
+      "frontendGit": "https://github.com/ashikur-rahman-10/modonovo-client",
+      "backendGit": "https://github.com/ashikur-rahman-10/modonovo-server",
+      "websiteLink": "https://modonovo-academy.web.app/",
+      "technologies": [
+        "html",
+        "css",
+        "react.js",
+        "express.js",
+        "mongodb",
+        "firebase."
+      ],
+      "features": [
+        "Light/dark mode toggle",
+        "Mobile Responsive",
+        "This website contain extra-curricular activities",
+        "We have 15+ qualityfull instructors",
+        "Every course contains 20 seats",
+        "Student can select their favorite courses",
+        "Student can enroll a class from selected classes",
+        "Online card payment available."
+      ],
+      "details": "ModoNovo is a website where can student choose their extra-curricular classes and enroll that classes.",
+      "thumbnail": "https://i.ibb.co/1nmJWqS/modonovo-academy-web-app.png",
+      "uploadDate": "2024-01-07T14:45:46.779Z",
+      "showHome":false
+    },
+    {
+      "projectName": "Epic Rumple (A MERN stack Website)",
+      "frontendGit": "https://github.com/ashikur-rahman-10/epic-rumble-client",
+      "backendGit": "https://github.com/ashikur-rahman-10/epic-rumble-server",
+      "websiteLink": "https://epic-rumble.web.app/",
+      "technologies": [
+        "Html",
+        "css",
+        "react.js",
+        "express.js",
+        "Mongodb",
+        "firebase"
+      ],
+      "features": [
+        "You can buy toys whatever you want",
+        "We have Lots of collections",
+        "In our store there are Lots of categories",
+        "Our sellers collect products from china",
+        "We have trustable top sellers",
+        "We have lots of happy customers."
+      ],
+      "details": "This a online based shop.You can buy some epic action toys for your Kids with a resonable prices.",
+      "thumbnail": "https://i.ibb.co/LpH9FW8/Screenshot-2023-07-04-193110.png",
+      "uploadDate": "2023-10-07T14:45:46.779Z",
+      "showHome":false
+    },
+    {
+      "projectName": "Foodie Frenzy (A MERN stack Website)",
+      "frontendGit": "https://github.com/ashikur-rahman-10/foodie-frenzy-client",
+      "backendGit": "https://github.com/ashikur-rahman-10/foodie-frezy-server",
+      "websiteLink": "https://foodie-frenzy.web.app/home",
+      "technologies": [
+        "Html",
+        "css",
+        "react.js",
+        "express.js",
+        "Mongodb",
+        "firebase"
+      ],
+      "features": [
+        "This website is about mordern food recipe",
+        "World class chefs are available here",
+        "Every chefs have minimum 5 years work experiences",
+        "You can find your desire recipe easily",
+        "We have a lots of food recipes."
+      ],
+      "details": "Step into the vibrant Latest Recipe website, located in our Foodie Frenzy, where classic recipes are given a contemporary twist.",
+      "thumbnail": "https://i.ibb.co/WcMYXHR/Screenshot-2023-07-04-193955.png",
+      "uploadDate": "2023-12-07T14:45:46.779Z",
+      "showHome":false
+    },
+    {
+      "projectName": "Bonomala Boighor",
+      "frontendGit": "https://github.com/ashikur-rahman-10/Bornomala-Boighor-Client",
+      "backendGit": "https://github.com/ashikur-rahman-10/Bornomala-Boighor-server",
+      "websiteLink": "https://bornomala-mart.web.app/",
+      "technologies": [
+        "React.js",
+        " Firebase",
+        " Tailwind CSS",
+        " Node.js",
+        "Express.js",
+        " MongoDB Database",
+        " SSLcommerz"
+      ],
+      "features": [
+        "Buyer & Admin dashboards",
+        "Book browsing",
+        "Cart management",
+        "Checkout/payment",
+        "Order history",
+        "Invoice download",
+        "Reviews",
+        "Book management",
+        "Order management",
+        "Shipping level download",
+        "Secure login",
+        "Mobile Responsive."
+      ],
+      "details": "Bornomala Boighor is a MERN Stack single vendor online bookstore with separate dashboards for buyers and administrators. Buyers can browse, purchase, and review books, while administrators manage inventory, orders, and shipping labels",
+      "thumbnail": "https://i.ibb.co.com/MMRWqVq/Screenshot-2024-12-07-202833.pnghttps://i.ibb.co.com/MMRWqVq/Screenshot-2024-12-07-202833.png",
+      "uploadDate": "2024-12-07T14:45:46.779Z",
+      "showHome":true
+    }
+  ]

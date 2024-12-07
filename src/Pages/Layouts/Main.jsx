@@ -53,8 +53,11 @@ const Main = () => {
           <ul className="menu p-4 w-80 h-full pt-20 lg:pt-10 bg-[#040B14] text-[#737373] font-medium ">
             {/* Sidebar content here */}
 
-            <div className="w-1/2 rounded-full mx-auto p-2 bg-[#202020] mb-10">
-              <img className="rounded-full border mx-auto" src={about?.image} />
+            {/* <div className="w-1/2 avatar mask-circle mx-auto p-2 bg-[#202020] mb-10">
+              <img className=" mask-circle border mx-auto" src={about?.image} />
+            </div> */}
+            <div className="w-[60%] mx-auto avatar mask mask-circle">
+              <img src={about?.image} alt="" />
             </div>
             <div className="flex flex-col justify-end w-full pl-10">
               {/* For All Users */}

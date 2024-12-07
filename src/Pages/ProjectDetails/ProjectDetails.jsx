@@ -37,12 +37,14 @@ const ProjectDetails = () => {
     features,
     details,
     thumbnail,
+    showInHome,
   } = project;
 
   if (loading) {
     return useLoader();
   }
 
+  // Handle delete project
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -71,18 +73,41 @@ const ProjectDetails = () => {
     });
   };
 
+  // Handle "Show in Home" toggle
+  const handleShowInHome = () => {
+    axios
+      .put(`https://porfolio-server-five.vercel.app/projects/${_id}`, {
+        showInHome: !showInHome, // Toggle the current value
+      })
+      .then((response) => {
+        setProject({ ...project, showInHome: !showInHome }); // Update local state
+        Swal.fire({
+          icon: "success",
+          title: `Project ${
+            !showInHome ? "will be shown" : "removed"
+          } from home`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   window.scrollTo({
     top: 0,
     left: 0,
     behavior: "smooth",
   });
+
   return (
     <div className="px-10 w-full min-h-screen pt-10 md:pt-0 pb-10">
       <SectionTitle title={"Project Details"}></SectionTitle>
       <div className="max-w-4xl mx-auto">
         <div>
-          <img className="w-full" src={thumbnail} />
-          {user?.email == "ashikur.rahman3912@gmail.com" && (
+          <img className="w-full" src={thumbnail} alt="Project Thumbnail" />
+          {user?.email === "ashikur.rahman3912@gmail.com" && (
             <div className="flex gap-4 mt-5">
               <Link
                 to={`/update/${_id}`}
@@ -97,6 +122,13 @@ const ProjectDetails = () => {
                 className="bg-red-500 w-fit px-3 py-2 rounded-md text-white font-semibold flex items-center gap-1 hover:bg-red-700"
               >
                 Delete <FaTrash></FaTrash>
+              </button>
+
+              <button
+                onClick={handleShowInHome}
+                className="bg-sky-500 w-fit px-3 py-2 rounded-md text-white font-semibold flex items-center gap-1 hover:bg-sky-700"
+              >
+                {showInHome ? "Remove from Home" : "Show in Home"}
               </button>
             </div>
           )}

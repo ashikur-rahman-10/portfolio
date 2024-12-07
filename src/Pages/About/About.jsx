@@ -93,7 +93,7 @@ const About = () => {
                       to={"/update-about"}
                       className="px-2 py-1 bg-warning hover:bg-orange-400 text-white font-medium uppercase rounded-md text-xs"
                     >
-                      Update About
+                      Update Info
                     </Link>
                   </div>
                 )}
