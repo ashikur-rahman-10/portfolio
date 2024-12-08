@@ -17,7 +17,7 @@ const ProjectCard = ({ project }) => {
 
   return (
     <div>
-      <div className="card md:card-side bg-base-100 shadow-2xl bg-transparent ">
+      <div className="card lg:card-side bg-base-100 shadow-2xl bg-transparent ">
         <div className="card-body md:w-[45%]">
           <h2 className="card-title">{projectName}</h2>
           <p className="line-clamp-3">{details}</p>
@@ -66,7 +66,7 @@ const ProjectCard = ({ project }) => {
             </Link>
           </div>
         </div>
-        <figure className="md:w-[55%]">
+        <figure className="lg:w-[55%]">
           <img className="h-full w-full " src={thumbnail} alt={projectName} />
         </figure>
       </div>

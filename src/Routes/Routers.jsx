@@ -14,6 +14,7 @@ import UpdateProject from "../Pages/UpdateProjects/UpdateProject";
 import UpdateAbout from "../Pages/About/UpdateAbout";
 import AdminOnly from "./AdminOnly";
 import UpdateDP from "../Pages/About/UpdateDP";
+import Messeges from "../Pages/Messege/Messeges";
 
 const router = createBrowserRouter([
   {
@@ -85,6 +86,14 @@ const router = createBrowserRouter([
         element: (
           <AdminOnly>
             <UpdateDP></UpdateDP>
+          </AdminOnly>
+        ),
+      },
+      {
+        path: "/messages",
+        element: (
+          <AdminOnly>
+            <Messeges></Messeges>
           </AdminOnly>
         ),
       },

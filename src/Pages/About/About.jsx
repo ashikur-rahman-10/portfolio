@@ -23,7 +23,7 @@ const About = () => {
   }, []);
 
   return (
-    <div className="w-full px-10 lg:h-screen pb-10 ">
+    <div className="w-full px-4 md:px-10 lg:h-screen pb-10 ">
       <SectionTitle title={"About"}></SectionTitle>
 
       <h1 className="text-2xl font-medium pb-6">
@@ -33,7 +33,6 @@ const About = () => {
       <p>{about?.description}</p>
       <div className="flex justify-around space-y-10 lg:space-y-0 items-center flex-col md:flex-row my-10">
         <div>
-          {" "}
           <div className="avatar w-96 h-96">
             <img
               className="w-96  mask mask-hexagon-2"
@@ -53,7 +52,7 @@ const About = () => {
           )}
         </div>
         <div>
-          <div className="flex lg:gap-20 w-full max-w-xs lg:max-w-2xl lg:pr-20">
+          <div className="flex lg:gap-20 w-full lg:max-w-2xl lg:pr-20">
             <div>
               <ul className="space-y-4">
                 <li className="flex items-center gap-1">
