@@ -5,22 +5,37 @@ import SectionTitle from "../../Components/SectionTitle/SectionTitle";
 import { useNavigate, useParams } from "react-router-dom";
 
 const UpdateProject = () => {
-  const [project, setProject] = useState({});
+  const [project, setProject] = useState(null);
+  const { register, handleSubmit, reset } = useForm();
   const params = useParams();
   const id = params?.id;
-
   const navigate = useNavigate();
 
+  // Fetch project data
   useEffect(() => {
     fetch(`https://porfolio-server-five.vercel.app/projects/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setProject(data);
+        // Populate the form with existing project data
+        reset({
+          projectName: data?.projectName,
+          frontendGit: data?.frontendGit,
+          backendGit: data?.backendGit,
+          websiteLink: data?.websiteLink,
+          technologies: data?.technologies?.join(", "),
+          features: data?.features?.join(", "),
+          details: data?.details,
+          completionDate: data?.completionDate?.slice(0, 10),
+        });
+      })
+      .catch((err) => {
+        console.error("Failed to fetch project data:", err);
+        toast.error("Failed to load project data. Please try again.");
       });
-  }, [id]);
+  }, [id, reset]);
 
-  const { register, handleSubmit } = useForm();
-
+  // Handle form submission
   const onSubmit = (data) => {
     const {
       backendGit,
@@ -33,17 +48,15 @@ const UpdateProject = () => {
       completionDate,
     } = data;
 
-    const usedTechnology = technologies.split(",");
-    const websiteFeatures = features.split(",");
     const updatedProject = {
       projectName,
       frontendGit,
       backendGit,
       websiteLink,
-      technologies: usedTechnology,
-      features: websiteFeatures,
+      technologies: technologies.split(","),
+      features: features.split(","),
       details,
-      completionDate, // Adding the completion date
+      completionDate,
     };
 
     fetch(`https://porfolio-server-five.vercel.app/projects/${id}`, {
@@ -54,24 +67,22 @@ const UpdateProject = () => {
       body: JSON.stringify(updatedProject),
     })
       .then((res) => res.json())
-      .then((data) => {
-        if (data.modifiedCount > 0) {
+      .then((result) => {
+        if (result.modifiedCount > 0) {
           toast.success("Project updated successfully!");
-          setTimeout(() => {
-            navigate(`/projects/${id}`);
-          }, 500);
+          setTimeout(() => navigate(`/projects/${id}`), 500);
+        } else {
+          toast.error("No changes were made to the project.");
         }
+      })
+      .catch((err) => {
+        console.error("Error updating project:", err);
+        toast.error("Failed to update the project. Please try again.");
       });
   };
 
-  window.scrollTo({
-    top: 0,
-    left: 0,
-    behavior: "smooth",
-  });
-
   return (
-    <div className="px-10 w-full min-h-screen pt-10 md:pt-0 pb-10">
+    <div className="px-4 w-full min-h-screen pt-10 md:pt-0 pb-10 text-xs">
       <SectionTitle title={"Update a project"}></SectionTitle>
       <div className="w-fit mx-auto">
         <form
@@ -81,7 +92,9 @@ const UpdateProject = () => {
           <h1 className="text-center text-2xl md:text-4xl py-5 md:mb-4">
             Update Your Project
           </h1>
-          <div className="flex w-full flex-col md:flex-row gap-4 md:gap-10">
+
+          {/* Form Fields */}
+          <div className="flex flex-col md:flex-row gap-4 w-80 md:w-fit  ">
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Project Name</span>
@@ -89,11 +102,11 @@ const UpdateProject = () => {
               <input
                 type="text"
                 placeholder="Project Name"
-                defaultValue={project?.projectName}
                 {...register("projectName", { required: true })}
-                className="input input-bordered input-primary w-full md:w-96 max-w-md"
+                className=" rounded-md dark:bg-gray-700 w-full md:w-96 max-w-md text-xs px-2 py-1"
               />
             </div>
+
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Frontend GitHub Link</span>
@@ -101,13 +114,12 @@ const UpdateProject = () => {
               <input
                 type="text"
                 placeholder="Frontend GitHub Link"
-                defaultValue={project?.frontendGit}
                 {...register("frontendGit", { required: true })}
-                className="input input-bordered input-primary w-full md:w-96 max-w-md"
+                className=" rounded-md dark:bg-gray-700 w-full md:w-96 max-w-md text-xs px-2 py-1"
               />
             </div>
           </div>
-          <div className="flex w-full flex-col md:flex-row gap-4 md:gap-10">
+          <div className="flex flex-col md:flex-row gap-4 w-80 md:w-fit  ">
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Backend GitHub Link</span>
@@ -115,11 +127,11 @@ const UpdateProject = () => {
               <input
                 type="text"
                 placeholder="Backend GitHub Link"
-                defaultValue={project?.backendGit}
                 {...register("backendGit", { required: true })}
-                className="input input-bordered input-primary w-full md:w-96 max-w-md"
+                className=" rounded-md dark:bg-gray-700 w-full md:w-96 max-w-md text-xs px-2 py-1"
               />
             </div>
+
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Live Website Link</span>
@@ -127,23 +139,46 @@ const UpdateProject = () => {
               <input
                 type="text"
                 placeholder="Live Website Link"
-                defaultValue={project?.websiteLink}
                 {...register("websiteLink", { required: true })}
-                className="input input-bordered input-primary w-full md:w-96 max-w-md"
+                className=" rounded-md dark:bg-gray-700 w-full md:w-96 max-w-md text-xs px-2 py-1"
               />
             </div>
           </div>
-          <div className="flex w-full flex-col md:flex-row gap-4 md:gap-10">
-            <div>
+
+          <div className="flex flex-col md:flex-row gap-4 w-80 md:w-fit  ">
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Details</span>
+              </label>
+              <textarea
+                placeholder="Project Details"
+                {...register("details", { required: true })}
+                className="rounded-md dark:bg-gray-700 w-full md:w-96 max-w-md text-xs px-2 py-1 h-16"
+              />
+            </div>
+
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Features</span>
+              </label>
+              <textarea
+                placeholder="Features (comma-separated)"
+                {...register("features", { required: true })}
+                className="rounded-md dark:bg-gray-700 w-full md:w-96 max-w-md text-xs px-2 py-1 h-16"
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-col md:flex-row gap-4 w-80 md:w-fit  ">
+            <div className="form-control">
               <label className="label">
                 <span className="label-text">Technologies</span>
               </label>
               <input
                 type="text"
                 placeholder="Used Technologies (comma-separated)"
-                defaultValue={project?.technologies}
                 {...register("technologies", { required: true })}
-                className="input input-bordered input-primary w-full md:w-96 max-w-md"
+                className=" rounded-md dark:bg-gray-700 w-full md:w-96 max-w-md text-xs px-2 py-1"
               />
             </div>
             <div className="form-control">
@@ -153,37 +188,12 @@ const UpdateProject = () => {
               <input
                 type="date"
                 {...register("completionDate", { required: true })}
-                defaultValue={project?.completionDate?.slice(0, 10)}
-                className="input input-bordered input-primary w-full md:w-96 max-w-md"
+                className=" rounded-md dark:bg-gray-700 w-full md:w-96 max-w-md text-xs px-2 py-1"
               />
             </div>
           </div>
-          <div className="flex w-full flex-col md:flex-row gap-4 md:gap-10">
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Features</span>
-              </label>
-              <textarea
-                type="text"
-                {...register("features", { required: true })}
-                placeholder="Features (use newline for separation)"
-                defaultValue={project?.features}
-                className="textarea textarea-bordered textarea-primary w-full md:w-96 max-w-md"
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Details</span>
-              </label>
-              <textarea
-                type="text"
-                {...register("details", { required: true })}
-                defaultValue={project?.details}
-                placeholder="Project Details"
-                className="textarea textarea-bordered textarea-primary w-full md:w-96 max-w-md"
-              />
-            </div>
-          </div>
+
+          {/* Submit Button */}
           <div className="w-full flex justify-center">
             <input
               className="bg-info px-5 py-2 rounded-lg text-white font-medium hover:bg-sky-600 cursor-pointer"

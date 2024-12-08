@@ -23,6 +23,7 @@ const UpdateAbout = () => {
       city,
       degree,
       description,
+      image: about?.image,
     };
 
     fetch(

@@ -32,7 +32,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="px-10 pt-10 md:pt-0 bg-gradient-to-r from-violet-300 to-fuchsia-500">
+    <div className="px-10 pt-10 md:pt-0  bg-gradient-to-b from-fuchsia-500 to-violet-300 dark:from-gray-800 dark:to-gray-900">
       <SectionTitle title={"Get In Touch"}></SectionTitle>
       <div className="min-h-[80vh]  w-full flex justify-center items-center">
         <div className="w-full flex flex-col md:flex-row gap-20 md:justify-evenly items-center ">

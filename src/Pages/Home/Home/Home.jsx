@@ -9,7 +9,7 @@ import ProjectsForHome from "./ProjecsForHome";
 
 const Home = () => {
   return (
-    <div className=" bg-gradient-to-r from-violet-300 to-fuchsia-500 pb-10">
+    <div className="pb-10">
       <Helmet>
         <title>Home</title>
       </Helmet>

@@ -18,9 +18,9 @@ const ProjectCard = ({ project }) => {
   return (
     <div>
       <div className="card md:card-side bg-base-100 shadow-2xl bg-transparent ">
-        <div className="card-body md:w-[55%]">
+        <div className="card-body md:w-[45%]">
           <h2 className="card-title">{projectName}</h2>
-          <p>{details}</p>
+          <p className="line-clamp-3">{details}</p>
           <p className="flex gap-3 w-60 lg:w-96 flex-wrap">
             {technologies.map((technology, index) => (
               <span
@@ -66,7 +66,7 @@ const ProjectCard = ({ project }) => {
             </Link>
           </div>
         </div>
-        <figure className="w-[45%]">
+        <figure className="md:w-[55%]">
           <img className="h-full w-full " src={thumbnail} alt={projectName} />
         </figure>
       </div>

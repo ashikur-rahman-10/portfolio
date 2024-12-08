@@ -106,7 +106,11 @@ const ProjectDetails = () => {
       <SectionTitle title={"Project Details"}></SectionTitle>
       <div className="max-w-4xl mx-auto">
         <div>
-          <img className="w-full" src={thumbnail} alt="Project Thumbnail" />
+          <img
+            className="w-full rounded-md"
+            src={thumbnail}
+            alt="Project Thumbnail"
+          />
           {user?.email === "ashikur.rahman3912@gmail.com" && (
             <div className="flex gap-4 mt-5">
               <Link
@@ -174,7 +178,7 @@ const ProjectDetails = () => {
           <h2 className="text-2xl  md:text-3xl">Features:</h2>
           <ul className="space-y-2">
             {features.map((feature, index) => (
-              <li key={index} className=" text-[#4e4d4d] list-disc ml-5">
+              <li key={index} className=" list-disc ml-5">
                 {feature}
               </li>
             ))}

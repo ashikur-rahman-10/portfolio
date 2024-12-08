@@ -38,7 +38,7 @@ const AddProjects = () => {
             completionDate, // Get the new field
           } = data;
           const usedTechnology = technologies.split(",");
-          const websiteFeatures = features.split(".\n");
+          const websiteFeatures = features.split(",");
           const project = {
             projectName,
             frontendGit,
@@ -49,7 +49,8 @@ const AddProjects = () => {
             details,
             thumbnail: imgUrl,
             uploadDate: new Date(),
-            completionDate: new Date(completionDate), // Add completion date
+            completionDate: new Date(completionDate),
+            showHome: false,
           };
           fetch("https://porfolio-server-five.vercel.app/projects", {
             method: "POST",

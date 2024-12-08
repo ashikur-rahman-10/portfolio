@@ -45,7 +45,7 @@ const Projects = () => {
   });
 
   return (
-    <div className="px-10 w-full min-h-screen pt-10 md:pt-0 pb-10">
+    <div className="px-4 w-full min-h-screen pt-10 md:pt-0 pb-10">
       <SectionTitle title={"Projects"}></SectionTitle>
 
       {/* Dropdown menu to toggle sort order */}
